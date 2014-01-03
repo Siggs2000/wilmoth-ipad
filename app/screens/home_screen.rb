@@ -28,7 +28,7 @@ class HomeScreen < PM::Screen
   end
 
   def open_wells
-    open_split_screen WellSelectScreen, WellsScreen
+    app_delegate.activate_well_screen
   end
 
 end
