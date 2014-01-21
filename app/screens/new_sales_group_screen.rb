@@ -43,6 +43,12 @@ class NewSalesGroupScreen < PM::FormotionScreen
   end
 
   def on_submit(form)
-    
+    sg = SalesGroup.create
+    sg.name = form.render[:name]
+    sg.state = form.render[:state]
+    sg.county = form.render[:county]
+    sg.township = form.render[:township]
+
+    open WellsScreen
   end
 end

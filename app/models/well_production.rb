@@ -17,4 +17,13 @@ class WellProduction
           notes: :string
 
   belongs_to :well
+
+  def self.load_all
+    WellProduction.deserialize_from_file('well_production.dat')
+  end
+
+
+  def self.save_all
+    WellProduction.serialize_to_file('well_production.dat')
+  end  
 end

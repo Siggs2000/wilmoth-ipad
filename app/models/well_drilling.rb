@@ -8,4 +8,13 @@ class WellDrilling
           report_notes: :string
 
   belongs_to :well
+
+  def self.load_all
+    WellDrilling.deserialize_from_file('well_drilling.dat')
+  end
+
+
+  def self.save_all
+    WellDrilling.serialize_to_file('well_drilling.dat')
+  end  
 end

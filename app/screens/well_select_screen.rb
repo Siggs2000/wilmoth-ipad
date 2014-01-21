@@ -26,6 +26,6 @@ class WellSelectScreen < PM::Screen
   end
 
   def open_it
-    open NewSalesGroupScreen, in_detail: true
+    open NewWellScreen, in_detail: true
   end
 end

@@ -13,4 +13,13 @@ class WellMech
           evidence_of_corrosion: :boolean
 
   belongs_to :well
+
+  def self.load_all
+    WellMech.deserialize_from_file('well_mech.dat')
+  end
+
+
+  def self.save_all
+    WellMech.serialize_to_file('well_mech.dat')
+  end  
 end

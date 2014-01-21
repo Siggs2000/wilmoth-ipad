@@ -10,4 +10,13 @@ class SalesGroup
           township: :string
 
   has_many :wells
+
+  def self.load_all
+    SalesGroup.deserialize_from_file('sales_group.dat')
+  end
+
+
+  def self.save_all
+    SalesGroup.serialize_to_file('sales_group.dat')
+  end  
 end
