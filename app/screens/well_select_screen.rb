@@ -1,31 +1,35 @@
-class WellSelectScreen < PM::Screen
-    title "Select Well"
-  def on_appear
-    
-    view.backgroundColor = UIColor.whiteColor
-    self.split_screen # => PM::SplitViewController instance
-    self.split_screen.master_screen # => WellsSelectScreen
-    self.split_screen.detail_screen # => WellScreen
-  end
+class WellSelectScreen < PM::FormotionScreen
+  title "Select Well"
 
-  def will_appear
-    button_image = UIImage.imageNamed("wells_button.png")
-    @well_button = UIButton.buttonWithType(UIButtonTypeCustom)
-    @well_button.setBackgroundImage(button_image, forState: UIControlStateNormal)
-    @well_button.addTarget(self,
-                              action:'open_it',
-                              forControlEvents:UIControlEventTouchUpInside) 
-
-    Motion::Layout.new do |layout|
-      layout.view view
-      layout.subviews "well_button" => @well_button
-      layout.metrics "top" => 45, "margin" => 20, "height" => 40, "height2" => 250, "height3" => 75
-      layout.vertical "|-410-[well_button(==height3)]"
-      layout.horizontal "|-(>=100)-[well_button(==140)]-15-|"
+  def on_load
+    @array = []
+    @sales_group_id = SalesGroup.where(:name).eq("#{App::Persistence['sales_group_name']}").last.api_id
+    Well.where(:sales_group_id).eq(@sales_group_id).each do |x|
+      @array << x.name
     end
+    update_table_data
   end
 
-  def open_it
-    open NewWellScreen, in_detail: true
+  def table_data
+    {
+      sections: [{
+        title: "Select Well",
+        rows: [{
+          title: "Tap to Select Well",
+          key: :well,
+          type: :picker,
+          items: @array           
+          }, {
+          title: "Submit",
+          key: :submit,
+          type: :submit
+          }]
+        }]
+    }
+  end
+
+  def on_submit(form)
+    App::Persistence['well_name'] = form.render[:well]
+    app_delegate.activate_full_well_screen
   end
 end

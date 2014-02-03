@@ -14,7 +14,8 @@ class WellProduction
           operation_conducted: :string,
           current_production: :string,
           water_tank_level: :string,
-          notes: :string
+          notes: :string,
+          created_at: :date
 
   belongs_to :well
 

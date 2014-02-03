@@ -30,7 +30,14 @@ class AppDelegate < PM::Delegate
     @split_screen = open_split_screen WellSelectScreen.new(nav_bar: true), WellsScreen.new(nav_bar: true)
   end
 
+  def activate_sales_group_select
+    @split_screen = open_split_screen SalesGroupSelectScreen.new(nav_bar: true), SalesGroupScreen.new(nav_bar: true)
+  end
 
-
+  def activate_full_well_screen
+    #self.well_tab_screen ||= WellTabScreen.new(nav_bar: true)
+    #open WellTabScreen.new(nav_bar: true)
+    open_tab_bar WellProductionScreen, WellDrillingScreen.new(nav_bar: true), WellMechScreen, WellPhysScreen
+  end
   
 end

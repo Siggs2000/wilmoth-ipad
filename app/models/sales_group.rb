@@ -7,7 +7,8 @@ class SalesGroup
   columns name: :string, 
           state: :string,
           county: :string,
-          township: :string
+          township: :string,
+          api_id: :integer
 
   has_many :wells
 

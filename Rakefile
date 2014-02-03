@@ -11,4 +11,9 @@ Motion::Project::App.setup do |app|
   app.fonts = ['TitilliumWeb.ttf']
   app.deployment_target = "5.1"
   app.device_family = :ipad
+
+  # app.pods do
+  # #   pod 'AFOAuth2Client'
+  #    pod 'SVProgressHUD'
+  # end
 end
