@@ -30,7 +30,8 @@ class SalesGroupSelectScreen < PM::FormotionScreen
 
   def on_submit(form)
     App::Persistence['sales_group_name'] = form.render[:sales_group]
-    app_delegate.activate_well_screen
+    # app_delegate.activate_well_screen
+    open WellMeterSelectScreen, in_detail: true
   end
 
   def back_to_home
