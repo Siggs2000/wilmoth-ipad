@@ -30,6 +30,7 @@ class WellSelectScreen < PM::FormotionScreen
 
   def on_submit(form)
     App::Persistence['well_name'] = form.render[:well]
-    app_delegate.activate_full_well_screen
+    #app_delegate.activate_full_well_screen
+    app_delegate.activate_well_report_screen
   end
 end

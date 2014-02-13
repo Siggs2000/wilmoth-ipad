@@ -84,6 +84,7 @@ class NewWellProductionScreen < PM::FormotionScreen
     wp.water_tank_level = form.render[:water_tank_level]
     wp.notes = form.render[:notes]
     wp.created_at = NSDate.new
+    WellProduction.save_all
     App.alert("New Production Report Created")
     # app_delegate.activate_home_screen
     open HomeScreen.new

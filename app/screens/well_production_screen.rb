@@ -14,9 +14,17 @@ class WellProductionScreen < PM::Screen
     @label.textAlignment = UITextAlignmentCenter
     @label.font = UIFont.fontWithName('Titillium Web', size:30)
 
+    # @reports_date = UITextView.new
+    # @reports_date.font = UIFont.systemFontOfSize(20)
+    # @reports_date.text = @prod_reports_date_array[0][10]
+    # @reports_date.textAlignment = UITextAlignmentCenter
+    # @reports_date.textColor = UIColor.grayColor
+    # @reports_date.backgroundColor = UIColor.clearColor 
+    # @reports_date.editable = false   
+
     @reports = UITextView.new
     @reports.font = UIFont.systemFontOfSize(20)
-    @reports.text = "#{@prod_reports_array}"
+    @reports.text = @prod_reports_array[0][0]
     @reports.textAlignment = UITextAlignmentCenter
     @reports.textColor = UIColor.grayColor
     @reports.backgroundColor = UIColor.clearColor 
@@ -45,15 +53,19 @@ class WellProductionScreen < PM::Screen
 
     Motion::Layout.new do |layout|
       layout.view view
-      layout.subviews "new_prod_button" => @new_prod_button, "new_photo_button" => @new_photo_button, "upload_file_button" => @upload_file_button, "label" => @label, "reports" => @reports
-      layout.metrics "top" => 45, "margin" => 20, "height" => 40, "height2" => 250, "height3" => 75, "space" => 20
+      layout.subviews "new_prod_button" => @new_prod_button, "new_photo_button" => @new_photo_button, "label" => @label, "reports" => @reports#, "reports_date" => @reports_date
+      layout.metrics "top" => 85, "margin" => 20, "height" => 40, "height2" => 250, "height3" => 75, "space" => 20
       layout.vertical "|-top-[label(==30)]-margin-|"
+      #layout.vertical "|-(==105)-[reports(==30)]-(>=80)-|"
+      #layout.vertical "|-(==75)-[reports(==30)]-(>=80)-|"
       layout.vertical "|-(>=100)-[new_prod_button(==height3)]-(==80)-|"
       layout.vertical "|-(>=100)-[new_photo_button(==height3)]-(==80)-|"
-      layout.vertical "|-(>=100)-[upload_file_button(==height3)]-(==80)-|"
+      #layout.vertical "|-(>=100)-[upload_file_button(==height3)]-(==80)-|"
       layout.horizontal "|[label]|"
+      #layout.horizontal "|[reports_date]|"
       #layout.horizontal "|[reports]|"
-      layout.horizontal "|-height-[new_prod_button(==180)]-space-[upload_file_button(==180)]-space-[new_photo_button(==180)]-|"
+      layout.horizontal "|-height-[new_prod_button(==180)]-(>=100)-|"
+      layout.horizontal "|-(>=100)-[new_photo_button(==180)]-height-|"
     end
   end
 

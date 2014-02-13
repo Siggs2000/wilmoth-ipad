@@ -40,4 +40,7 @@ class AppDelegate < PM::Delegate
     open_tab_bar WellProductionScreen, WellDrillingScreen.new(nav_bar: true), WellMechScreen, WellPhysScreen
   end
   
+  def activate_well_report_screen
+    @split_screen = open_split_screen WellReportScreen.new(nav_bar: true), WellProductionScreen.new(nav_bar: true)
+  end
 end
